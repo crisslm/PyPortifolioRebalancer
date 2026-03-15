@@ -1,5 +1,5 @@
-from Model.Asset import Asset
-from Model.Portfolio import Portfolio
+from Models.Asset import Asset
+from Models.Portfolio import Portfolio
 from Service.Rebalancer import Rebalancer
 from Strategies.AllocationStrategy import AllocationStrategy
 
