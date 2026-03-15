@@ -1,3 +1,6 @@
+from Util.util import comparing_allocations_stocks, comparing_allocations_reits, comparing_allocations_bonds
+
+
 class Rebalancer:
     def __init__(self, portfolio, allocation_strategy):
         self.portfolio = portfolio
@@ -12,11 +15,9 @@ class Rebalancer:
     def comparing_allocations(self):
         currentAllocation = self.current_allocation()
         targetAllocation = self.allocation_strategy.target_allocation()
-        result = []
-        result.append("Sell Stocks" if currentAllocation[0] > targetAllocation[0] else "Buy Stocks")
-        result.append("Sell REITs" if currentAllocation[1] > targetAllocation[1] else "Buy REITs")
-        result.append("Sell Bonds" if currentAllocation[2] > targetAllocation[2] else "Buy Bonds")
-        return result
+        return [comparing_allocations_stocks(currentAllocation[0], targetAllocation[0]),
+                  comparing_allocations_reits(currentAllocation[1], targetAllocation[1]),
+                  comparing_allocations_bonds(currentAllocation[2], targetAllocation[2])]
 
     def rebalance_sugestions(self):
         newWay = self.comparing_allocations()
